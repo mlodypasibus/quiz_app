@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 
-class OpeningScreen extends StatefulWidget{
-  const OpeningScreen({super.key});
+class StartScreen extends StatelessWidget{
+  //jesli chcemy przekazac argument mozemy to zrobic za pomoca
+  //tego i nazwa jest calkowicie 
+  const StartScreen(this.startQuiz,{super.key});
 
-  @override
-  State<OpeningScreen> createState(){
-    return _OpeningScreen();
-  }
-}
+  final void Function() startQuiz;
 
-class _OpeningScreen extends State<OpeningScreen>{
-  
   @override
   Widget build(context){
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
         Image.asset(
         'assets/images/quiz-logo.png',
         width: 300,
@@ -28,7 +25,7 @@ class _OpeningScreen extends State<OpeningScreen>{
         ),
         const SizedBox(height: 20,),
         ElevatedButton.icon( 
-          onPressed: () {}, 
+          onPressed: startQuiz, 
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color.fromARGB(255, 176, 59, 248), 
             
@@ -41,7 +38,8 @@ class _OpeningScreen extends State<OpeningScreen>{
           style: TextStyle(color: Colors.white, fontSize: 16,),  
           ), 
           )
-      ]
+      ])
     );
   }
+
 }
