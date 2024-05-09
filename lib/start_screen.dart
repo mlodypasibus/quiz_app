@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class StartScreen extends StatelessWidget{
   //jesli chcemy przekazac argument mozemy to zrobic za pomoca
@@ -19,9 +20,13 @@ class StartScreen extends StatelessWidget{
         color: const Color.fromARGB(130, 255, 255, 255),
         ),
         const SizedBox(height: 40,),
-        const Text(
+        Text(
           'Learn Flutter the fun way!',
-          style: TextStyle(fontSize: 28, color: Colors.white)
+          style: GoogleFonts.lato(
+            fontSize: 28, 
+            color: Colors.white,
+            fontWeight: FontWeight.bold
+            )
         ),
         const SizedBox(height: 20,),
         ElevatedButton.icon( 
