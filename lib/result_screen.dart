@@ -2,11 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/data/questions.dart';
 import 'package:quiz_app/questions_summary.dart';
+import 'package:quiz_app/questions_screen.dart';
+import 'package:quiz_app/quiz.dart';
 
 class ResultScreen extends StatelessWidget{
   const ResultScreen({
     super.key, 
-    required this.choosenAnswers});
+    required this.choosenAnswers
+    });
 
   final List<String> choosenAnswers;
 
@@ -28,6 +31,12 @@ class ResultScreen extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+      final summaryData = getSummaryData();
+      final numTotalQuestions = questions.length;
+      final numCorrectQuestions = summaryData.where((data){
+        return data['user_answer'] == data['correct_answer'];
+      }).length;
+
       return SizedBox(
       width: double.infinity,
       child: Container(
@@ -35,13 +44,28 @@ class ResultScreen extends StatelessWidget{
         child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text('You answered X out of Y questions correctly'),
+          Text('You answered $numCorrectQuestions out of $numTotalQuestions questions correctly',
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: Color.fromARGB(197, 240, 216, 254),
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            ),),
           const SizedBox(height: 30,),
-          QuestionsSummary(getSummaryData()),
+          QuestionsSummary(summaryData),
           const SizedBox(height: 30,),
-          TextButton(
-            onPressed: () {}, 
-            child: const Text('Restart Text'))
+          ElevatedButton.icon(
+            onPressed: () {
+              
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Quiz()),
+              );
+            }, 
+            icon: const Icon(
+              Icons.restart_alt
+            ),
+            label: const Text('Restart Text')),
         ],
         ),
       )
