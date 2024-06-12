@@ -63,7 +63,7 @@ class ResultScreen extends StatelessWidget{
               );
             }, 
             icon: const Icon(
-              Icons.restart_alt
+              Icons.refresh
             ),
             label: const Text('Restart Text')),
         ],

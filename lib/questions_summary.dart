@@ -13,12 +13,14 @@ class QuestionsSummary extends StatelessWidget{
   Widget build(BuildContext context) {
 
     return SizedBox(
-      height: 300,
+      height: 350,
+      width: 350,
       child: SingleChildScrollView(
         child: Column(
           children: summaryData.map((data){
             
             return Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CircleAvatar(
                   backgroundColor:(data['correct_answer'] == data['user_answer']) 
@@ -28,7 +30,7 @@ class QuestionsSummary extends StatelessWidget{
                   child: Text(((data['question_index'] as int ) + 1).toString(),
                   ),
                 ),
-                const SizedBox(width: 20,height: 50,),
+                const SizedBox(width: 20,height: 70,),
                 Expanded(
                   child: Column(children: [
                     Align(
